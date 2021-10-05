@@ -8,7 +8,8 @@ import urllib.request
 from urllib import request
 from configparser import ConfigParser
 
-os.remove('error.log') # del old log file
+if os.path.exists('error.log'):
+    os.remove('error.log') # del old log file
 
 logging.basicConfig(filename='error.log',level=logging.DEBUG,format="%(asctime)s - %(pathname)s - %(message)s",datefmt="%Y/%m/%d %H:%M:%S")
 
@@ -58,7 +59,7 @@ except:
 try:
     if int(Ver_local) != int(Ver_server):
 
-        print("\n\033[5;36;40mDownloading...Please wait.\033[0m\n")
+        print("\n\033[5;36;40m下载中，请等待。\033[0m\n")
 
         def report(blocknum, blocksize, totalsize):
             readsofar = blocknum * blocksize
