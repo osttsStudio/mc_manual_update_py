@@ -33,7 +33,8 @@ except:
 
 try:
     if not os.path.exists(con_path):
-        print("\033[1;31;40m配置文件config.ini不存在，请联系管理员。\033[0m")
+        print("""\033[1;31;40m配置文件config.ini不存在，请联系管理员。
+The config.ini does not exist, please contact the administrator.\033[0m""")
         input("Press Enter to exit.")
         os.remove('config_new.ini')
         sys.exit('config file not found')
@@ -49,7 +50,9 @@ Ver_server = con_server.get('ver','version')
 
 try:
     if int(Ver_local) == int(Ver_server):
-        print("""\n\033[5;36;40m目前已是最新版本，如有疑问请联系管理员。\033[0m\n""")
+        print("""\n\033[5;36;40m目前已是最新版本，如有疑问请联系管理员。
+It is currently the latest version. If you have any questions, please contact the administrator.\033[0m\n""")
+        input("Press Enter to exit.")
         os.remove('config_new.ini')
         sys.exit('It is the latest version.')
 
@@ -59,7 +62,8 @@ except:
 try:
     if int(Ver_local) != int(Ver_server):
 
-        print("\n\033[5;36;40m下载中，请等待。\033[0m\n")
+        print("""\n\033[5;36;40m检测到更新，下载中，请等待。
+Update detected, downloading, please wait.\033[0m\n""")
 
         def report(blocknum, blocksize, totalsize):
             readsofar = blocknum * blocksize
@@ -83,6 +87,9 @@ try:
         time.sleep(2)
         os.remove('update.zip')
         os.remove('config_new.ini')
+        print("""\n\033[5;36;40m更新中，如有疑问请联系管理员，请等待。
+Updating, please contact the administrator if you have any questions, please wait.\033[0m\n""")
+        time.sleep(3)
         os.system(bat_res)
         sys.exit('update is successful')
 
